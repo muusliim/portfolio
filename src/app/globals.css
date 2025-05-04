@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arimo';
+}
+
+
+@layer utilities {
+    .container-page {
+        @apply container mx-auto flex justify-center items-center h-dvh
+    }
+
+    .linkLine {
+        @apply flex justify-between uppercase text-5xl md:text-6xl lg:text-8xl
+    }
+}
+
+@font-face {
+    font-family: 'SilianRail';
+    src: url('/fonts/SilianRail.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1 {
+    font-family: var(--font-roboto-mono);
+}
+
+
+.transform-style-preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.perspective-\[1500px\] {
+    perspective: 1500px;
+}
+
+/* ДЛЯ ПРЕДОТВРАЩЕНИЯ БАГА АНИМАЦИИ ПРИ ПЕРЕХОДЕ НА ДРУГИЕ СТРАНИЦЫ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none !important;
+}
+
+::view-transition-group(root) {
+    z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+    isolation: isolate;
+    will-change: transform, opacity, clip-path;
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 10000;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
 }
