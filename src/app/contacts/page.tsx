@@ -13,7 +13,7 @@ export default function Contacts() {
 	};
 
 	return (
-		<main className="relative h-screen w-full flex items-center justify-center overflow-clip">
+		<main className="relative h-dvh w-dvw flex items-center justify-center overflow-clip">
 			<div className="text-black text-4xl md:text-6xl lg:text-8xl font-bold">
 				<div className="linkLine">
 					<p>ЭТО</p>

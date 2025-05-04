@@ -5,6 +5,7 @@ import { TextOnPlane } from "@/components/TextOnPlane";
 import { useEffect, useState } from "react";
 import { Preloader } from "./Preloader";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 
 export function Home() {
 	const [showPreloader, setShowPreloader] = useState(false);
@@ -13,31 +14,26 @@ export function Home() {
 
 	useEffect(() => {
 		const alreadyLoaded = sessionStorage.getItem("Preloader");
-
 		if (pathname === "/" && !alreadyLoaded) {
 			sessionStorage.setItem("Preloader", "true");
 			setShowPreloader(true);
-		} else {
-			setLoadingDone(true);
 		}
 	}, [pathname]);
 
-	const handlePreloaderFinish = () => {
-		setShowPreloader(false);
-		setLoadingDone(true);
-	};
 	return (
-		<div className="relative">
-			{showPreloader && <Preloader onComplete={handlePreloaderFinish} />}
-			<main
-				className={`w-screen h-screen overflow-clip transition-opacity duration-1000 ${
-					loadingDone ? "opacity-100" : "opacity-0 pointer-events-none"
-				}`}
-			>
+		<div>
+			{showPreloader && <Preloader key={1} setLoadingDone={setLoadingDone} />}{" "}
+			<motion.div
+				key={2}
+				initial={{ opacity: 1 }}
+				animate={{ opacity: loadingDone || !showPreloader ? 0 : 1 }}
+				className="absolute inset-0 bg-white z-30 pointer-none pointer-events-none"
+			/>
+			<main className="w-dvw h-dvh overflow-clip z-99">
 				<TextOnPlane />
 				<Clock />
 				<SpinningTextBasic />
-			</main>
+			</main>{" "}
 		</div>
 	);
 }

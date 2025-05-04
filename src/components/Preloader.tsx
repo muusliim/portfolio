@@ -1,8 +1,12 @@
 "use client";
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
+export const Preloader = ({
+	setLoadingDone,
+}: {
+	setLoadingDone: Dispatch<SetStateAction<boolean>>;
+}) => {
 	const [count, setCount] = useState(0);
 	const [exit, setExit] = useState(false);
 
@@ -13,26 +17,26 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
 				clearInterval(interval);
 				setTimeout(() => {
 					setExit(true);
-					setTimeout(onComplete, 1000); 
 				}, 1400);
 				return 100;
 			});
 		}, 15);
 
 		return () => clearInterval(interval);
-	}, [onComplete]);
+	}, []);
 
 	return (
-		<AnimatePresence>
-			{!exit && (
+		<AnimatePresence mode="wait">
+			{!exit && count <= 100 && (
 				<motion.div
-					className="fixed inset-0 h-screen w-screen bg-white text-black flex items-center justify-center text-4xl font-bold z-50"
+					className="fixed overflow-clip inset-0 h-screen w-screen bg-white text-black flex items-center justify-center text-4xl font-bold z-50"
 					initial={{ y: 0 }}
 					animate={{ y: 0 }}
 					exit={{
 						y: "-100%",
 						transition: { duration: 1, ease: [0.87, 0, 0.13, 1] },
 					}}
+					onAnimationComplete={() => setLoadingDone(true)}
 				>
 					<motion.span
 						initial={{ opacity: 0 }}

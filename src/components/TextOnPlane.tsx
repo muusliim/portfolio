@@ -28,7 +28,7 @@ export function TextOnPlane() {
 	}
 
 	return (
-		<div className="absolute inset-0 z-10 flex items-center justify-center">
+		<div className="absolute inset-0 flex items-center justify-center">
 			<Canvas
 				orthographic
 				camera={{
@@ -37,7 +37,7 @@ export function TextOnPlane() {
 				}}
 			>
 				<mesh ref={hitPlane}>
-					<planeGeometry args={[200, 200]} />
+					<planeGeometry args={[500, 500]} />
 					<meshBasicMaterial transparent opacity={0} depthWrite={false} />
 				</mesh>
 
