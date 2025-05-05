@@ -3,12 +3,13 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { Suspense, useEffect, useRef } from "react";
-import TexturedPlane from "./TexturedPlane";
-import Interaction from "./Interaction";
-import ShadowPlane from "./ShadowPlane";
+import { TexturedPlane } from "./TexturedPlane";
+import { Interaction } from "./Interaction";
+import { ShadowPlane } from "./ShadowPlane";
 
 export function TextOnPlane() {
 	const pointer = useRef(new THREE.Vector3());
+
 	const hitPlane =
 		useRef<THREE.Mesh<THREE.BufferGeometry, THREE.Material>>(null);
 
@@ -28,8 +29,10 @@ export function TextOnPlane() {
 	}
 
 	return (
-		<div className="absolute inset-0 flex items-center justify-center">
+		<div className="absolute inset-0 flex items-center justify-center [contain:strict]">
 			<Canvas
+				gl={{ powerPreference: "high-performance" }}
+				dpr={[1, 2]}
 				orthographic
 				camera={{
 					position: [0, -10, 6],
@@ -37,15 +40,15 @@ export function TextOnPlane() {
 				}}
 			>
 				<mesh ref={hitPlane}>
-					<planeGeometry args={[500, 500]} />
+					<planeGeometry args={[100, 100]} />
 					<meshBasicMaterial transparent opacity={0} depthWrite={false} />
 				</mesh>
 
 				<Suspense fallback={null}>
 					<TexturedPlane pointer={pointer} />
+					<Interaction pointerRef={pointer} hitRef={hitPlane} />
+					<ShadowPlane pointer={pointer} />
 				</Suspense>
-				<Interaction pointerRef={pointer} hitRef={hitPlane} />
-				<ShadowPlane pointer={pointer} />
 
 				<ResponsiveCamera />
 			</Canvas>

@@ -19,6 +19,7 @@ export function Home() {
 			setShowPreloader(true);
 		}
 	}, [pathname]);
+	
 
 	return (
 		<div>
