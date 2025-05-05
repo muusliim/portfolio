@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { RefObject, useRef } from "react";
 import { useTexture } from "@react-three/drei";
 
-export default function ShadowPlane({
+export function ShadowPlane({
 	pointer,
 }: {
 	pointer: RefObject<THREE.Vector3>;

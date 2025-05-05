@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { TextLoopCustom } from "@/components/TextLoopCustom";
 import Link from "next/link";
@@ -19,6 +19,17 @@ const text = [
 export default function About() {
 	const [flipped, setFlipped] = useState(true);
 	const [isHovered, setIsHovered] = useState(false);
+	const [loaded, setLoaded] = useState(false);
+
+	useEffect(() => {
+		const img = new Image();
+		img.src = "/paper.avif";
+		img.onload = () => setLoaded(true);
+	}, []);
+
+	if (!loaded) {
+		return null;
+	}
 
 	return (
 		<main className="container-page flex justify-center items-center h-dvh overflow-clip">
@@ -99,7 +110,7 @@ export default function About() {
 					</div>
 
 					{/* Back side */}
-					<div className="absolute w-full h-full backface-hidden bg-[url('/paper.avif')] bg-cover bg-center bg-no-repeat shadow-2xl shadow-zinc-700/80 overflow-auto select-none p-5 md:p-10">
+					<div className="absolute flex justify-center flex-col w-full h-full backface-hidden bg-[url('/paper.avif')] bg-cover bg-center bg-no-repeat shadow-2xl shadow-zinc-700/80 overflow-auto select-none p-5 md:p-10">
 						{text.map((item) => (
 							<div
 								key={`${item.key}-${item.value}`}

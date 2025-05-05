@@ -10,7 +10,7 @@ interface InteractionProps {
 	> | null>;
 }
 
-export default function Interaction({ pointerRef, hitRef }: InteractionProps) {
+export function Interaction({ pointerRef, hitRef }: InteractionProps) {
 	const { camera } = useThree();
 	const raycaster = useRef(new THREE.Raycaster());
 	const pointer = useRef(new THREE.Vector2());

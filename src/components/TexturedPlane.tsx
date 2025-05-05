@@ -2,14 +2,16 @@ import { useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
+import React from "react";
 
-export default function TexturedPlane({
+export const TexturedPlane = React.memo(function TexturedPlane({
 	pointer,
 }: {
 	pointer: React.RefObject<THREE.Vector3>;
 }) {
 	const meshRef = useRef<THREE.Mesh>(null);
 	const texture = useTexture("/images/home-shader.png");
+	const lastPointer = useRef(new THREE.Vector3());
 
 	useFrame(() => {
 		if (
@@ -17,15 +19,18 @@ export default function TexturedPlane({
 			pointer.current &&
 			meshRef.current.material instanceof THREE.ShaderMaterial
 		) {
-			meshRef.current?.material.uniforms.uDisplacement.value.copy(
-				pointer.current
-			);
+			if (!lastPointer.current.equals(pointer.current)) {
+				meshRef.current.material.uniforms.uDisplacement.value.copy(
+					pointer.current
+				);
+				lastPointer.current.copy(pointer.current);
+			}
 		}
 	});
 
 	return (
 		<mesh ref={meshRef} rotation-z={Math.PI / 4}>
-			<planeGeometry args={[15, 15, 100, 100]} />
+			<planeGeometry args={[15, 15, 50, 50]} />
 			<shaderMaterial
 				transparent
 				side={THREE.DoubleSide}
@@ -76,4 +81,4 @@ export default function TexturedPlane({
 			/>
 		</mesh>
 	);
-}
+});
