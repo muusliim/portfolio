@@ -9,7 +9,7 @@ export function CustomButton({
 }) {
 	return (
 		<button
-			className={`relative cursor-pointer py-4 px-8 text-center font-barlow inline-flex justify-center text-base uppercase  rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4  overflow-hidden scale-75 ${
+			className={`relative py-4 px-8 text-center font-barlow inline-flex justify-center text-base uppercase  rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4  overflow-hidden scale-75 ${
 				bgTheme === "black" ? "bg-white text-black" : "bg-black text-white"
 			} ${className}`}
 		>

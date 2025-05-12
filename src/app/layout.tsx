@@ -4,6 +4,7 @@ import { M_PLUS_Rounded_1c } from "next/font/google";
 
 import "./globals.css";
 import Nav from "@/components/Nav";
+import { Cursor } from "@/components/Cursor";
 
 const mPlusRounded = M_PLUS_Rounded_1c({
 	subsets: ["cyrillic"],
@@ -28,6 +29,7 @@ export default function RootLayout({
 			<html lang="ru">
 				<body className={mPlusRounded.className}>
 					<>
+						<Cursor/>
 						<Nav />
 						{children}
 					</>

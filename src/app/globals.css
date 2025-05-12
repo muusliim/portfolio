@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
+* {
+    cursor: none !important;
+
+}
 
 body {
     font-family: 'Arimo';
 }
+
 
 
 @layer utilities {

@@ -47,7 +47,6 @@ export function LinkContactsEffect({
 
 	return (
 		<div
-			style={{ cursor: "pointer" }}
 			onMouseEnter={() => {
 				manageMouseEnter();
 			}}
