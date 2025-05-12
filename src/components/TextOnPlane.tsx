@@ -6,6 +6,7 @@ import { Suspense, useEffect, useRef } from "react";
 import { TexturedPlane } from "./TexturedPlane";
 import { Interaction } from "./Interaction";
 import { ShadowPlane } from "./ShadowPlane";
+import { Html } from "@react-three/drei";
 
 export function TextOnPlane() {
 	const pointer = useRef(new THREE.Vector3());
@@ -44,7 +45,15 @@ export function TextOnPlane() {
 					<meshBasicMaterial transparent opacity={0} depthWrite={false} />
 				</mesh>
 
-				<Suspense fallback={null}>
+				<Suspense
+					fallback={
+						<Html center>
+							<div className="flex justify-center items-center">
+								<div className="w-8 h-8 md:w-16 md:h-16 border-4 border-t-transparent border-black border-solid rounded-full animate-spin"></div>
+							</div>
+						</Html>
+					}
+				>
 					<TexturedPlane pointer={pointer} />
 					<Interaction pointerRef={pointer} hitRef={hitPlane} />
 					<ShadowPlane pointer={pointer} />

@@ -29,7 +29,7 @@ export default function RootLayout({
 			<html lang="ru">
 				<body className={mPlusRounded.className}>
 					<>
-						<Cursor/>
+						<Cursor className="hidden md:block" />
 						<Nav />
 						{children}
 					</>
