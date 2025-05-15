@@ -73,14 +73,14 @@ const Content = ({ content }: { content: Content[] }) => {
 					<p className="font-light text-center text-sm lg:text-2xl w-full max-w-md text-balance">
 						{description}
 					</p>
-					<CustomButton
-						className="w-2/3 font-black"
-						bgTheme={idx % 2 ? "black" : "white"}
-					>
-						<Link target="_blank" href={link}>
+					<Link target="_blank" href={link} className="w-full text-center">
+						<CustomButton
+							className="w-2/3 font-black"
+							bgTheme={idx % 2 ? "black" : "white"}
+						>
 							Перейти
-						</Link>
-					</CustomButton>
+						</CustomButton>
+					</Link>
 				</div>
 			))}
 		</div>
