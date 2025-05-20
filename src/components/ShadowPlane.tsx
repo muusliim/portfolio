@@ -11,7 +11,7 @@ export function ShadowPlane({
 	pointer: RefObject<THREE.Vector3>;
 }) {
 	const meshRef = useRef<THREE.Mesh>(null);
-	const texture = useTexture("/images/home-shader-shadow.png");
+	const texture = useTexture("/images/home-shader-shadow.webp");
 
 	const shaderMaterial = useRef(
 		new THREE.ShaderMaterial({

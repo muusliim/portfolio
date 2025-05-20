@@ -10,7 +10,7 @@ export const TexturedPlane = React.memo(function TexturedPlane({
 	pointer: React.RefObject<THREE.Vector3>;
 }) {
 	const meshRef = useRef<THREE.Mesh>(null);
-	const texture = useTexture("/images/home-shader.png");
+	const texture = useTexture("/images/home-shader.webp");
 	const lastPointer = useRef(new THREE.Vector3());
 
 	useFrame(() => {
