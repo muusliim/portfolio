@@ -2,7 +2,7 @@ import { TextLoop } from "./motion-primitives/text-loop";
 
 export function TextLoopCustom() {
 	return (
-		<div className="grid md:grid-cols-3 grid-cols-1 whitespace-pre-wrap text-sm uppercase mt-4 lg:text-xl">
+		<div className="grid md:grid-cols-3 grid-cols-1 whitespace-pre-wrap text-[10px] md:text-sm uppercase mt-1 lg:text-xl">
 			<p className="font-bold">Стек </p>
 			<TextLoop
 				className="overflow-y-clip col-span-2 text-right uppercase"

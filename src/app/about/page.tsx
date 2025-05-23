@@ -12,7 +12,7 @@ const text = [
 	{ key: "Опыт", value: "３+ года" },
 	{
 		key: "Био",
-		value: `СТРАСТЬ К ТВОРЧЕСТВУ В ЦИФРОВОМ ПРОСТРАНСТВЕ. УВЛЕКАЮСЬ УЛИЧНОЙ ФОТОГРАФИЕЙ И ИССЛЕДОВАНИЕМ НЕОБЫЧНЫХ ГОРОДСКИХ МЕСТ. Постоянно ищу новые вызовы, возможности для роста и воплощаю в жизнь креативные идеи. Осваиваю технологии, создаю визуально выразительные и удобные веб-сайты.`,
+		value: `Осваиваю технологии и создаю визуально выразительные, удобные веб-сайты. Постоянно ищу новые вызовы, возможности для роста и воплощаю креативные идеи.`,
 	},
 ];
 
@@ -34,7 +34,7 @@ export default function About() {
 	return (
 		<main className="container-page flex justify-center items-center h-dvh overflow-clip">
 			<div
-				className="relative w-full md:w-2/3 max-h-2/3 h-dvh perspective-[1500px]"
+				className="relative w-full md:w-2/3 max-h-[300px] md:max-h-3/4 h-dvh perspective-[1500px]"
 				onClick={() => setFlipped(!flipped)}
 			>
 				<motion.div
@@ -110,16 +110,16 @@ export default function About() {
 					</div>
 
 					{/* Back side */}
-					<div className="absolute flex justify-center flex-col w-full h-full backface-hidden bg-[url('/paper.avif')] bg-cover bg-center bg-no-repeat shadow-2xl shadow-zinc-700/80 overflow-auto select-none p-5 md:p-10">
+					<div className="absolute flex justify-center flex-col w-full h-full backface-hidden bg-[url('/paper.avif')] bg-cover bg-center bg-no-repeat shadow-2xl shadow-zinc-700/80 overflow-auto select-none p-5 md:px-4 lg:px-8 md:gap-2">
 						{text.map((item) => (
 							<div
 								key={`${item.key}-${item.value}`}
-								className="grid md:grid-cols-3 grid-cols-1"
+								className="grid md:grid-cols-3 grid-cols-1 items-baseline"
 							>
-								<p className="text-sm lg:text-xl mt-4 font-bold uppercase">
+								<p className="text-[10px] md:text-sm lg:text-xl font-bold uppercase">
 									{item.key}
 								</p>
-								<p className="text-sm lg:text-xl mt-4 uppercase text-right col-span-2">
+								<p className="text-[10px] md:text-sm lg:text-xl uppercase text-right col-span-2 mt-1">
 									{item.value}
 								</p>
 							</div>
